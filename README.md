@@ -32,3 +32,7 @@ jobs:
   The YML workflow will need to set GITHUB_TOKEN with the GitHub Secret Token
 
   `GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}`
+
+## Credits
+
+I am using [moji-translate](https://www.npmjs.com/package/moji-translate) library for text to emoji translation by [Monica](https://twitter.com/notwaldorf).
