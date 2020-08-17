@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Comment Emoji
     steps:
-    - uses: actions/checkout@v2
-      uses: dreamer01/comments-emoji
-      with:
+      - uses: actions/checkout@v2
+      - uses: dreamer01/comments-emoji@master
+        with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
