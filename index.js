@@ -14,6 +14,7 @@ async function run() {
         const { data: issueComment } = await octokit.issues.getComment({
           ...repo,
         });
+        core.debug(issueComment);
         body = translate.translate(issueComment);
         core.debug(body);
         octokit.issues
