@@ -8,26 +8,38 @@ async function run() {
   const { eventName, repo } = github.context;
   let body;
 
-  switch (eventName) {
-    case "issue_comment":
-      const { data: issueComment } = await octokit.issues.getComment({
-        ...repo,
-      });
-      body = translate.translate(issueComment);
-      octokit.issues.updateComment({ ...repo, body });
-      break;
-    case "pull_request_review_comment":
-      const { data: prComment } = await octokit.pulls.getReviewComment({
-        ...repo,
-      });
-      body = translate.translate(prComment);
-      octokit.pulls.updateReviewComment({ ...repo, body });
-      break;
-    default:
-      core.warning(
-        'Currently this action is configured for "Issue Comments" and "Pull Request Comments" only.'
-      );
-      break;
+  try {
+    switch (eventName) {
+      case "issue_comment":
+        const { data: issueComment } = await octokit.issues.getComment({
+          ...repo,
+        });
+        body = translate.translate(issueComment);
+        console.log(body);
+        octokit.issues
+          .updateComment({ ...repo, body })
+          .then(() => core.info("Done !"))
+          .catch((error) => core.error(error));
+        break;
+      case "pull_request_review_comment":
+        const { data: prComment } = await octokit.pulls.getReviewComment({
+          ...repo,
+        });
+        body = translate.translate(prComment);
+        console.log(body);
+        octokit.pulls
+          .updateReviewComment({ ...repo, body })
+          .then(() => core.info("Done !"))
+          .catch((error) => core.error(error));
+        break;
+      default:
+        core.warning(
+          'Currently this action is configured for "Issue Comments" and "Pull Request Comments" only.'
+        );
+        break;
+    }
+  } catch (error) {
+    core.error(error);
   }
 }
 
