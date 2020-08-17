@@ -12,13 +12,14 @@ on:
     types: [created]
 
 jobs:
-  comments-emoji:
+  comment-emoji:
     runs-on: ubuntu-latest
-    name: Comment Emoji
+    name: Emoji Comments
     steps:
-    - uses: actions/checkout@v2
-      uses: dreamer01/comments-emoji
-      with:
+      - uses: actions/checkout@v2
+      - name: Comment Emoji - action exe
+        uses: ./
+        with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
@@ -28,4 +29,5 @@ jobs:
 
   The YML workflow will need to set GITHUB_TOKEN with the GitHub Secret Token
   GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
+
   https://help.github.com/en/actions/automating-your-workflow-with-github-actions/authenticating-with-the-github_token#about-the-github_token-secret
