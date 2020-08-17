@@ -1,10 +1,12 @@
 # comments-emoji
 
-A Github Action to convert your comment message to emojis.
+A Github Action to convert your comment from issues and PRs to emojis.
 
 ## Sample Workflow
 
 ```yml
+name: Emoji Comments
+
 on:
   issue_comment:
     types: [created]
@@ -18,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Comment Emoji - action exe
-        uses: ./
+        uses: dreamer01/comments-emoji@master
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
@@ -28,6 +30,5 @@ jobs:
 - GITHUB_TOKEN
 
   The YML workflow will need to set GITHUB_TOKEN with the GitHub Secret Token
-  GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
 
-  https://help.github.com/en/actions/automating-your-workflow-with-github-actions/authenticating-with-the-github_token#about-the-github_token-secret
+  `GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}`

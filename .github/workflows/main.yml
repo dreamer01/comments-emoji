@@ -1,3 +1,5 @@
+name: Emoji Comments
+
 on:
   issue_comment:
     types: [created]
@@ -11,6 +13,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Comment Emoji - action exe
-        uses: ./
+        uses: dreamer01/comments-emoji@master
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
