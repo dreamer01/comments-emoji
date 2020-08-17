@@ -15,7 +15,7 @@ async function run() {
           ...repo,
         });
         body = translate.translate(issueComment);
-        console.log(body);
+        core.debug(body);
         octokit.issues
           .updateComment({ ...repo, body })
           .then(() => core.info("Done !"))
@@ -26,7 +26,7 @@ async function run() {
           ...repo,
         });
         body = translate.translate(prComment);
-        console.log(body);
+        core.debug(body);
         octokit.pulls
           .updateReviewComment({ ...repo, body })
           .then(() => core.info("Done !"))
