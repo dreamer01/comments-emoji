@@ -7,17 +7,12 @@ async function run() {
   const octokit = github.getOctokit(githubToken);
   const { eventName, repo, payload } = github.context;
   let body;
-  console.log(JSON.stringify(payload, null, 2));
 
   switch (eventName) {
     case "issue_comment":
-      const { data: issueComment } = await octokit.issues.getComment({
-        ...repo,
-        comment_id: payload.comment.id,
-      });
-      core.debug(issueComment, payload.comment);
+      const issueComment = payload.comment.body;
       body = translate.translate(issueComment);
-      core.debug(body);
+      console.log(body);
       octokit.issues
         .updateComment({ ...repo, comment_id: payload.comment.id, body })
         .then(() => core.info("Done !"))
