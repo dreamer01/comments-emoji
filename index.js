@@ -6,18 +6,21 @@ async function run() {
   const githubToken = core.getInput("GITHUB_TOKEN");
   const octokit = github.getOctokit(githubToken);
   const { eventName, repo } = github.context;
+  let body;
 
   switch (eventName) {
     case "issue_comment":
-      const { data: comment } = await octokit.issues.getComment({ ...repo });
-      const body = translate.translate(comment);
+      const { data: issueComment } = await octokit.issues.getComment({
+        ...repo,
+      });
+      body = translate.translate(issueComment);
       octokit.issues.updateComment({ ...repo, body });
       break;
     case "pull_request_review_comment":
-      const { data: comment } = await octokit.pulls.getReviewComment({
+      const { data: prComment } = await octokit.pulls.getReviewComment({
         ...repo,
       });
-      const body = translate.translate(comment);
+      body = translate.translate(prComment);
       octokit.pulls.updateReviewComment({ ...repo, body });
       break;
     default:
