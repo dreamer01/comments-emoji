@@ -1,0 +1,14 @@
+{
+  "name": "comments-emoji",
+  "version": "0.0.1",
+  "description": "A Github Action, to convert your text comments to emoji rich message.",
+  "main": "index.js",
+  "repository": "https://github.com/dreamer01/comments-emoji.git",
+  "author": "Pushpendra Singh",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.2.4",
+    "@actions/github": "^4.0.0",
+    "moji-translate": "^1.0.8"
+  }
+}
