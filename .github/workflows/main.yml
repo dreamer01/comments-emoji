@@ -16,3 +16,4 @@ jobs:
         uses: dreamer01/comments-emoji@master
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          enablePolice: true
