@@ -2,9 +2,10 @@ const github = require("@actions/github");
 const core = require("@actions/core");
 const translate = require("moji-translate");
 const Filter = require("bad-words");
-const profanityFilter = new Filter({ placeHolder: "x" });
-
-profanityFilter.replaceWord("🤐");
+const profanityFilter = new Filter({
+  replaceRegex: /([A-Za-z0-9_])+/g,
+  placeHolder: "🤐",
+});
 
 async function run() {
   const githubToken = core.getInput("GITHUB_TOKEN");
