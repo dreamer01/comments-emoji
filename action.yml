@@ -4,6 +4,9 @@ inputs:
   GITHUB_TOKEN:
     description: "GITHUB ACCESS TOKEN"
     required: true
+  enablePolice:
+    description: "Flag to enable profanity check."
+
 runs:
   using: "node12"
   main: "index.js"
