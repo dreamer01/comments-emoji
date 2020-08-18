@@ -10,14 +10,14 @@ async function run() {
   const octokit = github.getOctokit(githubToken);
   const { eventName, repo, payload } = github.context;
 
-  console.log(enablePolice);
+  console.log(typeof enablePolice);
 
   switch (eventName) {
     case "issue_comment":
       const issueComment = payload.comment.body;
       let filteredComment = issueComment;
       if (enablePolice === "true")
-        filteredComment = profanityFilter(issueComment);
+        filteredComment = profanityFilter.clean(issueComment);
       const body = translate.translate(filteredComment);
       octokit.issues
         .updateComment({ ...repo, comment_id: payload.comment.id, body })
