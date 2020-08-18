@@ -9,6 +9,7 @@
   "dependencies": {
     "@actions/core": "^1.2.4",
     "@actions/github": "^4.0.0",
+    "bad-words": "^3.0.3",
     "moji-translate": "^1.0.8"
   }
 }
