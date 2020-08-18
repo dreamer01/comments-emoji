@@ -2,15 +2,15 @@ const github = require("@actions/github");
 const core = require("@actions/core");
 const translate = require("moji-translate");
 const Filter = require("bad-words");
-const profanityFilter = new Filter({ placeHolder: "🤐" });
+const profanityFilter = new Filter({ placeHolder: "x" });
+
+profanityFilter.replaceWord("🤐");
 
 async function run() {
   const githubToken = core.getInput("GITHUB_TOKEN");
   const enablePolice = core.getInput("enablePolice");
   const octokit = github.getOctokit(githubToken);
   const { eventName, repo, payload } = github.context;
-
-  console.log(typeof enablePolice);
 
   switch (eventName) {
     case "issue_comment":
